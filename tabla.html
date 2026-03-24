@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier List</title>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap');
+
+        :root {
+            --bg-top: #ffe9d4;
+            --bg-bottom: #ffd8b0;
+            --ink: #2b1f17;
+            --accent: #c04c00;
+            --line: rgba(255, 255, 255, 0.65);
+            --panel-1: #12304a;
+            --panel-2: #1a3f5f;
+            --tier-s: #7c3aed;
+            --tier-a: #90ee90;
+            --tier-b: #3f8f5a;
+            --tier-c: #ffd54a;
+            --tier-d: #e53935;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            text-align: center;
+            color: var(--ink);
+            font-family: 'Manrope', 'Trebuchet MS', sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, #fff7ef 0%, transparent 35%),
+                radial-gradient(circle at 90% 20%, #ffd9b8 0%, transparent 30%),
+                linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+            padding: 28px 14px 42px;
+        }
+
+        h1 {
+            margin: 0 0 18px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 0 2px 0 rgba(255, 255, 255, 0.75);
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: min(900px, 94vw);
+            background: linear-gradient(160deg, var(--panel-1) 0%, var(--panel-2) 100%);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow:
+                0 16px 30px rgba(20, 40, 60, 0.32),
+                0 1px 0 rgba(255, 255, 255, 0.18) inset;
+        }
+
+        th,
+        td {
+            border: 2px solid var(--line);
+            padding: 12px;
+        }
+
+        th {
+            background: linear-gradient(90deg, #ff7a18 0%, #ffc06a 100%);
+            color: #fff;
+            font-weight: 800;
+            font-size: 15px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+        }
+
+        td:not(:first-child) {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        td:first-child {
+            width: 70px;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        tr.tier-s td:first-child,
+        tr.tier-s:hover td:first-child {
+            background: linear-gradient(90deg, color-mix(in srgb, var(--tier-s) 90%, #ffffff 10%), var(--tier-s));
+            color: #fff;
+        }
+
+        tr.tier-a td:first-child,
+        tr.tier-a:hover td:first-child {
+            background: linear-gradient(90deg, color-mix(in srgb, var(--tier-a) 88%, #ffffff 12%), var(--tier-a));
+            color: #1d3b1d;
+        }
+
+        tr.tier-b td:first-child,
+        tr.tier-b:hover td:first-child {
+            background: linear-gradient(90deg, color-mix(in srgb, var(--tier-b) 86%, #ffffff 14%), var(--tier-b));
+            color: #fff;
+        }
+
+        tr.tier-c td:first-child,
+        tr.tier-c:hover td:first-child {
+            background: linear-gradient(90deg, color-mix(in srgb, var(--tier-c) 90%, #ffffff 10%), var(--tier-c));
+            color: #4d3a00;
+        }
+        
+        tr.tier-d td:first-child,
+        tr.tier-d:hover td:first-child {
+            background: linear-gradient(90deg, color-mix(in srgb, var(--tier-d) 90%, #ffffff 10%), var(--tier-d));
+            color: #fff;
+        }
+
+        .elementos {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            min-width: 120px;
+        }
+
+        .elementos img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow:
+                0 6px 10px rgba(0, 0, 0, 0.16),
+                0 0 0 1px rgba(0, 0, 0, 0.06) inset;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .elementos img:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow:
+                0 10px 16px rgba(0, 0, 0, 0.22),
+                0 0 0 1px rgba(0, 0, 0, 0.08) inset;
+        }
+
+        @media (max-width: 560px) {
+            table {
+                width: 96vw;
+            }
+
+            th,
+            td {
+                padding: 8px;
+                border-width: 2px;
+            }
+
+            .elementos img {
+                width: 82px;
+                height: 82px;
+            }
+        }
+    </style>
+    <h1>Tier List</h1>
+    <table>
+        <tr>
+            <th>Tier</th>
+            <th>Elementos</th>
+        </tr>
+        <tr class="tier-s">
+            <td>S</td>
+            <td class="elementos">
+                <img src="img/cats/rigby.png" alt="Rigby" width="100" height="100">
+                <img src="img/cats/demon.png" alt="demon" width="100" height="100">
+                <img src="img/cats/whereiam.png" alt="whereiam" width="100" height="100">
+            </td>
+        </tr>
+        <tr class="tier-a">
+            <td>A</td>
+            <td class="elementos">
+                <img src="img/cats/front_cat.png" alt="Front_cat" width="100" height="100">
+                <img src="img/cats/black.png" alt="black" width="100" height="100">
+                <img src="img/cats/smile.png" alt="smile" width="100" height="100">
+                <img src="img/cats/cleric.png" alt="cleric" width="100" height="100">
+            </td>
+        </tr>
+        <tr class="tier-b">
+            <td>B</td>
+            <td class="elementos">
+                <img src="img/cats/fingerupcat.png" alt="fingerupcat" width="100" height="100">
+                <img src="img/cats/eyesopen.png" alt="eyesopen" width="100" height="100">
+                <img src="img/cats/myears.png" alt="myears" width="100" height="100">
+            </td>
+        </tr>
+        <tr class="tier-c">
+            <td>C</td>
+            <td class="elementos">
+                <img src="img/cats/judge.png" alt="judge" width="100" height="100">
+            </td>
+        </tr>
+        <tr class="tier-d">
+            <td>D</td>
+            <td class="elementos">
+                <img src="img/cats/larry.png" alt="larry" width="100" height="100">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
