@@ -21,6 +21,38 @@ body {
 	font-family: "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
+body.has-menu {
+	display: block;
+	padding: 0;
+}
+
+body.has-menu #menu-root {
+	width: 100%;
+}
+
+body.has-menu #menu-root .topbar {
+	width: 100%;
+}
+
+body.has-menu main {
+	margin: 32px auto 20px;
+	width: min(920px, calc(100% - 40px));
+}
+
+body.has-menu.trivia-home,
+body.has-menu.trivia-question {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	min-height: 100vh;
+}
+
+body.has-menu.trivia-home main,
+body.has-menu.trivia-question main {
+	margin: 0 auto;
+	align-self: center;
+	margin-top: -100px;
+}
+
 .trivia-home {
 	color: var(--verde-oscuro);
 	background: linear-gradient(135deg, #d5ea92, var(--verde-claro));

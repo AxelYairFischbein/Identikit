@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganaste</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="juegos.css">
 </head>
-<body class="resultado resultado-ganaste">
+<body class="resultado resultado-ganaste has-menu">
+    <div id="menu-root"></div>
     <div class="fondo-brillos"></div>
 
     <main class="panel">
@@ -23,5 +25,9 @@
 
         <p class="extra">Excelente run. Segui para intentar un nuevo record.</p>
     </main>
+    <script type="module">
+    import { renderMenu } from "../Componentes/menu.js";
+    renderMenu("menu-root", { basePath: "../" });
+    </script>
 </body>
 </html>

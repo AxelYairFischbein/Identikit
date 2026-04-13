@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia 2</title>
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="juegos.css">
 </head>
-<body class="trivia-question">
+<body class="trivia-question has-menu">
+    <div id="menu-root"></div>
     <main class="panel">
         <h1>Quien es rigby?</h1>
 
@@ -22,5 +24,9 @@
 
         <p class="pista">Pd: Elegi la imagen correcta para seguir.</p>
     </main>
+    <script type="module">
+    import { renderMenu } from "../Componentes/menu.js";
+    renderMenu("menu-root", { basePath: "../" });
+    </script>
 </body>
 </html>

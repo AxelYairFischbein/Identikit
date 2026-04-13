@@ -21,10 +21,10 @@
 <body style="background-color: #a7c957;">
     <div id="menu-root"></div>
 
-    <section>
+    <section class="home-card" style="background: #f2e8cf; background-color: #f2e8cf; background-image: none;">
     <H1>Axel Fischbein</H1>
 
-    <img src="img/cats/steve.png" alt="Gato Steve" style="display: block; margin-left: auto; margin-right: auto;">
+    <img src="img/axel.png" alt="Axel Fischbein" style="display: block; margin-left: auto; width: 270px; height: 270px; margin-right: auto; border: 8px solid #386641;">
     <blockquote id="bienvenida" class="playwrite-ie">"Cuando estas agotado y a punto de rendirte, es cuando <br>comienza el verdadero desafio"</blockquote>
     <img src="img/separador.gif" alt="Separador" style="display: block; margin-left: auto; margin-right: auto;">
     <p class="subtitulo playwrite-ie-2">Me llamo Axel Fischbein. Nací el 10 de agosto de 2001. Tengo 24 años. Vivo en CABA, Argentina. Soy <span style="font-weight: bold; color: #bc4749;">Programador Frontend Universitario</span> en la UADE. Me gustan los gatos, los videojuegos y la música.</p>
@@ -45,10 +45,14 @@
         <a href="card.html">Acerca de mí</a>
     </div>
 
+    <div id="footer-root"></div>
+
     <script type="module">
         import { renderMenu } from "./Componentes/menu.js";
+        import { renderFooter } from "./Componentes/footer.js";
 
         renderMenu("menu-root");
+        renderFooter("footer-root");
     </script>
 </body>
 </html>

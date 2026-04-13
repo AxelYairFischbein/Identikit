@@ -4,9 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Perdiste</title>
+	<link rel="stylesheet" href="../style.css">
 	<link rel="stylesheet" href="juegos.css">
 </head>
-<body class="resultado resultado-perdiste">
+<body class="resultado resultado-perdiste has-menu">
+	<div id="menu-root"></div>
 	<div class="fondo-particulas"></div>
 
 	<main class="panel">
@@ -23,5 +25,9 @@
 
 		<p class="extra">Un intento mas y seguro lo sacas.</p>
 	</main>
+	<script type="module">
+	import { renderMenu } from "../Componentes/menu.js";
+	renderMenu("menu-root", { basePath: "../" });
+	</script>
 </body>
 </html>

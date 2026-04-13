@@ -1,84 +1,188 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sobre mi</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        html,
-        body {
-            min-height: 100%;
+        .about-page {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 0 32px;
+            background:
+                radial-gradient(circle at 12% 12%, rgba(242, 232, 207, 0.92) 0%, rgba(242, 232, 207, 0) 34%),
+                radial-gradient(circle at 85% 18%, rgba(188, 71, 73, 0.15) 0%, rgba(188, 71, 73, 0) 30%),
+                linear-gradient(165deg, var(--verde-claro) 0%, #94bf49 34%, var(--verde-medio) 72%, var(--verde-oscuro) 100%);
         }
 
-        body {
+        .about-wrap {
+            width: min(980px, calc(100% - 32px));
+            margin: 28px auto 0;
+            display: grid;
+            gap: 18px;
+        }
+
+        .about-card {
+            background: linear-gradient(180deg, rgba(242, 232, 207, 0.97), rgba(242, 232, 207, 0.93));
+            border: 2px solid rgba(56, 102, 65, 0.55);
+            border-radius: 20px;
+            box-shadow: 0 14px 28px rgba(34, 63, 40, 0.24);
+            padding: 24px;
+        }
+
+        .about-title {
             margin: 0;
-            min-height: 100vh;
+            text-align: left;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--rojo);
+        }
+
+        .about-subtitle {
+            margin: 8px 0 0;
+            color: var(--verde-oscuro);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .about-text {
+            margin-top: 14px;
+            color: #294a30;
+            font-size: 1.05rem;
+            line-height: 1.72;
+        }
+
+        .about-text strong {
+            color: var(--rojo);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .skill-box {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(56, 102, 65, 0.3);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .skill-box h3 {
+            margin: 0 0 10px;
+            color: var(--verde-oscuro);
+            font-size: 1.02rem;
+        }
+
+        .skill-box ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #294a30;
+            line-height: 1.6;
+        }
+
+        .about-note {
+            margin-top: 14px;
+            font-size: 0.95rem;
+            color: rgba(41, 74, 48, 0.88);
+            font-style: italic;
+        }
+
+        @media (max-width: 760px) {
+            .about-wrap {
+                width: min(980px, calc(100% - 20px));
+                margin-top: 18px;
+                gap: 14px;
+            }
+
+            .about-card {
+                padding: 18px;
+                border-radius: 16px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+<body class="about-page">
+    <div id="menu-root"></div>
 
-<body style="background-color: gray;">
-
-    <center>
-        <section style="background-color: antiquewhite; width: 640px;">
-            <section>
-                <h1>Acerca de mí</h1>
-                <h2>¡Estoy encantado de conocerte!</h2>
-                <p style="background-color: gray; max-width: 600px; text-align: left;">
-                    <img src="iphone.jpg" alt="Steve Jobs" style="float: right; width: 180px; margin-left: 20px;">
-                    Soy Steve Jobs, un apasionado empresario y diseñador que tuvo el privilegio de cofundar Apple Inc. A
-                    lo
-                    largo de mi vida, busqué revolucionar la industria de la tecnología con productos como el iPhone, el
-                    iPad y
-                    la Mac. Siempre creí en la importancia del diseño y la simplicidad, valores que guiaron mi trabajo y
-                    que marcaron una era en la informática personal y el entretenimiento digital.<br>
-                    Mi objetivo fue crear dispositivos que no solo fueran útiles, sino también hermosos y fáciles de
-                    usar.
-                    Estoy
-                    convencido de que la innovación surge cuando se combinan la tecnología y el arte. Gracias por
-                    interesarte en
-                    mi historia y en el legado que dejé en el mundo de la tecnología.
-                </p>
-                </p>
-                <p style="background-color: gray; max-width: 600px; margin-top: 50px; text-align: left;">
-                    <img src="iphone.jpg" alt="Steve Jobs" style="float: left; width: 180px; margin-right: 20px;">
-                    A lo largo de mi carrera, siempre busqué desafiar los límites y pensar diferente. Fundé Apple con la
-                    visión
-                    de crear productos que cambiaran la vida de las personas, y cada nuevo dispositivo fue el resultado
-                    de
-                    esa
-                    pasión por la innovación. Me enorgullece haber contribuido a transformar la manera en que nos
-                    comunicamos,
-                    trabajamos y disfrutamos del entretenimiento. Mi mayor satisfacción fue ver cómo la tecnología podía
-                    acercar
-                    a las personas y hacer el mundo un poco mejor.
-                </p>
-                <p>&nbsp</p>
-            </section>
-            <section>
-                <table border="0" width="400" style="margin-top: 20px;">
-                    <tr>
-                        <th colspan="3">Te invito a conocer más sobre mi empresa...</th>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center; width: 100px; height: 100px;">
-                            <img src="apple.jpg" alt="" width="50" style="margin-top: 15px;">
-                            <p>Historia de Apple</p>
-                        </td>
-                        <!-- <td style="text-align: center;">&nbsp</td> -->
-                        <td style="text-align: center; width: 100px; height: 100px;">
-                            <img src="apple.jpg" alt="" width="50" style="margin-top: 15px;">
-                            <p>Trivia</p>
-                        </td>
-                    </tr>
-                </table>
-            </section>
-
+    <main class="about-wrap">
+        <section class="about-card">
+            <h1 class="about-title">Sobre mi</h1>
+            <p class="about-subtitle">Axel Fischbein · CABA, Argentina · 24 años</p>
+            <p class="about-text">
+                Soy <strong>Programador Frontend Universitario</strong> en UADE. Me interesa crear interfaces claras,
+                funcionales y con buena experiencia de usuario. Disfruto combinar diseno visual con codigo para que
+                cada proyecto se vea bien y tambien sea facil de usar.
+            </p>
+            <p class="about-text">
+                Ademas de programar, me gustan los gatos, los videojuegos y la musica. Siempre estoy buscando aprender
+                nuevas herramientas para mejorar mi trabajo y ampliar mi perfil como desarrollador.
+            </p>
         </section>
-    </center>
 
+        <section class="about-card">
+            <h2 class="about-subtitle">Conocimientos y tecnologias</h2>
 
+            <div class="skills-grid">
+                <article class="skill-box">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li>HTML5 semantico</li>
+                        <li>CSS3 (Flexbox, Grid, Responsive Design)</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>TypeScript</li>
+                        <li>Angular</li>
+                        <li>React (base/intermedio)</li>
+                    </ul>
+                </article>
+
+                <article class="skill-box">
+                    <h3>UI y experiencia</h3>
+                    <ul>
+                        <li>Diseño responsive mobile-first</li>
+                        <li>Buenas practicas de accesibilidad</li>
+                        <li>Componentizacion de interfaces</li>
+                        <li>Consistencia visual y estructura de estilos</li>
+                    </ul>
+                </article>
+
+                <article class="skill-box">
+                    <h3>Herramientas</h3>
+                    <ul>
+                        <li>Git y GitHub</li>
+                        <li>VS Code</li>
+                        <li>npm</li>
+                        <li>Vite</li>
+                        <li>Docker</li>
+                    </ul>
+                </article>
+
+                <article class="skill-box">
+                    <h3>Complementario</h3>
+                    <ul>
+                        <li>Consumo de APIs REST</li>
+                        <li>Manejo de JSON</li>
+                        <li>Debugging en navegador</li>
+                        <li>Buenas practicas de organizacion de proyectos</li>
+                    </ul>
+                </article>
+            </div>
+
+            <p class="about-note">
+                Perfil en crecimiento: sigo sumando practica en frameworks frontend y herramientas de despliegue.
+            </p>
+        </section>
+    </main>
+
+    <script type="module">
+        import { renderMenu } from "./Componentes/menu.js";
+        renderMenu("menu-root");
+    </script>
 </body>
-
 </html>
