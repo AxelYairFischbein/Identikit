@@ -1,0 +1,398 @@
+:root {
+	--verde-claro: #a7c957;
+	--verde-medio: #6a994e;
+	--verde-oscuro: #386641;
+	--beige: #f2e8cf;
+	--rojo: #bc4749;
+	--rojo-oscuro: #8f2e30;
+	--oro: #ffd166;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	padding: 20px;
+	font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.trivia-home {
+	color: var(--verde-oscuro);
+	background: linear-gradient(135deg, #d5ea92, var(--verde-claro));
+}
+
+.trivia-home .portada {
+	width: min(680px, 100%);
+	background: rgba(242, 232, 207, 0.96);
+	border: 3px solid var(--verde-oscuro);
+	border-radius: 16px;
+	padding: 24px;
+	text-align: center;
+	box-shadow: 0 14px 28px rgba(56, 102, 65, 0.24);
+}
+
+.trivia-home h1 {
+	margin: 0 0 16px;
+	font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+	color: var(--verde-oscuro);
+}
+
+.gato {
+	width: min(320px, 90%);
+	border-radius: 14px;
+	border: 3px solid var(--verde-medio);
+	display: block;
+	margin: 0 auto 18px;
+}
+
+.acciones {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.boton {
+	text-decoration: none;
+	font-weight: 800;
+	padding: 11px 16px;
+	border-radius: 12px;
+	border: 2px solid transparent;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, filter 0.2s ease;
+}
+
+.trivia-home .boton.primario,
+.trivia-question .boton.primario,
+.resultado-ganaste .boton.primario {
+	color: var(--beige);
+	background: linear-gradient(120deg, var(--verde-oscuro), var(--verde-medio));
+	box-shadow: 0 9px 18px rgba(56, 102, 65, 0.25);
+}
+
+.trivia-home .boton.secundario,
+.trivia-question .boton.secundario,
+.resultado-ganaste .boton.secundario {
+	color: var(--verde-oscuro);
+	background: #fffef6;
+	border-color: rgba(56, 102, 65, 0.36);
+}
+
+.boton:hover {
+	transform: translateY(-2px);
+	filter: brightness(1.03);
+}
+
+.trivia-question {
+	color: var(--verde-oscuro);
+	background: linear-gradient(140deg, #d8eda0, var(--verde-claro));
+}
+
+.trivia-question .panel {
+	width: min(820px, 100%);
+	background: rgba(242, 232, 207, 0.96);
+	border: 3px solid var(--verde-oscuro);
+	border-radius: 16px;
+	box-shadow: 0 14px 30px rgba(56, 102, 65, 0.22);
+	padding: 24px;
+	text-align: center;
+}
+
+.trivia-question h1 {
+	margin: 0 0 18px;
+	font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+}
+
+.opciones {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(200px, 1fr));
+	gap: 16px;
+}
+
+.opcion {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fffef7;
+	border: 2px solid rgba(56, 102, 65, 0.32);
+	border-radius: 14px;
+	padding: 12px;
+	aspect-ratio: 1 / 1;
+	text-decoration: none;
+	transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.opcion:hover {
+	transform: translateY(-3px);
+	border-color: var(--verde-medio);
+}
+
+.opcion img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 10px;
+	display: block;
+	margin: 0;
+}
+
+.pista {
+	margin-top: 16px;
+	font-weight: 700;
+	color: var(--rojo);
+}
+
+.resultado {
+	overflow: hidden;
+}
+
+.resultado-ganaste {
+	color: var(--verde-oscuro);
+	background:
+		radial-gradient(circle at 14% 12%, rgba(242, 232, 207, 0.9) 0%, rgba(242, 232, 207, 0) 34%),
+		radial-gradient(circle at 86% 20%, rgba(255, 209, 102, 0.34) 0%, rgba(255, 209, 102, 0) 36%),
+		linear-gradient(145deg, #d8eda0 0%, var(--verde-claro) 38%, var(--verde-medio) 100%);
+}
+
+.resultado-perdiste {
+	color: var(--verde-oscuro);
+	background:
+		radial-gradient(circle at 14% 12%, rgba(242, 232, 207, 0.85) 0%, rgba(242, 232, 207, 0) 36%),
+		radial-gradient(circle at 86% 18%, rgba(188, 71, 73, 0.38) 0%, rgba(188, 71, 73, 0) 34%),
+		linear-gradient(145deg, #eadbc4 0%, #d4b598 28%, #c67f7f 66%, #a95860 100%);
+}
+
+.fondo-brillos,
+.fondo-brillos::before,
+.fondo-brillos::after,
+.fondo-particulas,
+.fondo-particulas::before,
+.fondo-particulas::after {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	content: "";
+}
+
+.fondo-brillos,
+.fondo-brillos::before,
+.fondo-brillos::after {
+	background-image:
+		radial-gradient(circle, rgba(255, 255, 255, 0.65) 0 2px, transparent 3px),
+		radial-gradient(circle, rgba(255, 255, 255, 0.45) 0 1px, transparent 2px);
+	background-size: 190px 190px, 120px 120px;
+	background-position: 0 0, 40px 18px;
+	animation: subir 22s linear infinite;
+	opacity: 0.42;
+}
+
+.fondo-brillos::before {
+	animation-duration: 30s;
+	opacity: 0.25;
+	transform: scale(1.04);
+}
+
+.fondo-brillos::after {
+	animation-duration: 38s;
+	opacity: 0.2;
+	transform: scale(1.08);
+}
+
+.fondo-particulas,
+.fondo-particulas::before,
+.fondo-particulas::after {
+	background-image:
+		radial-gradient(circle, rgba(255, 255, 255, 0.48) 0 2px, transparent 3px),
+		radial-gradient(circle, rgba(255, 255, 255, 0.34) 0 1px, transparent 2px);
+	background-size: 180px 180px, 120px 120px;
+	background-position: 0 0, 36px 22px;
+	animation: caer 18s linear infinite;
+	opacity: 0.36;
+}
+
+.fondo-particulas::before {
+	animation-duration: 28s;
+	opacity: 0.2;
+	transform: scale(1.05);
+}
+
+.fondo-particulas::after {
+	animation-duration: 35s;
+	opacity: 0.18;
+	transform: scale(1.08);
+}
+
+.resultado .panel {
+	position: relative;
+	width: min(860px, 100%);
+	background: rgba(242, 232, 207, 0.97);
+	border-radius: 20px;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35) inset;
+	padding: 28px 24px 24px;
+	text-align: center;
+	z-index: 1;
+}
+
+.resultado-ganaste .panel {
+	border: 3px solid var(--verde-oscuro);
+	box-shadow:
+		0 18px 34px rgba(56, 102, 65, 0.32),
+		0 0 0 2px rgba(255, 255, 255, 0.35) inset;
+}
+
+.resultado-perdiste .panel {
+	border: 3px solid var(--rojo-oscuro);
+	box-shadow:
+		0 18px 34px rgba(121, 49, 54, 0.34),
+		0 0 0 2px rgba(255, 255, 255, 0.35) inset;
+}
+
+.badge {
+	display: inline-block;
+	padding: 8px 14px;
+	border-radius: 999px;
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.resultado-ganaste .badge {
+	color: #5c4300;
+	background: linear-gradient(90deg, #ffefad, var(--oro));
+	border: 2px solid #d4a820;
+}
+
+.resultado-perdiste .badge {
+	color: #fff;
+	background: linear-gradient(90deg, #d8676a, var(--rojo));
+	border: 2px solid #8f2e30;
+}
+
+.resultado h1 {
+	margin: 14px 0 8px;
+	font-size: clamp(1.9rem, 5vw, 3rem);
+	line-height: 1.06;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.resultado-ganaste h1 {
+	color: var(--rojo);
+}
+
+.resultado-perdiste h1 {
+	color: var(--rojo-oscuro);
+}
+
+.mensaje {
+	margin: 0 auto 18px;
+	max-width: 620px;
+	font-size: clamp(1rem, 2.5vw, 1.2rem);
+	line-height: 1.5;
+	font-weight: 700;
+}
+
+.resultado-perdiste .mensaje {
+	color: #5d2a2b;
+}
+
+.imagen-ganador,
+.imagen-perdedor {
+	width: min(330px, 100%);
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	border-radius: 18px;
+}
+
+.imagen-ganador {
+	border: 4px solid rgba(56, 102, 65, 0.86);
+	box-shadow:
+		0 14px 24px rgba(56, 102, 65, 0.34),
+		0 0 0 6px rgba(255, 255, 255, 0.45);
+}
+
+.imagen-perdedor {
+	border: 4px solid rgba(143, 46, 48, 0.85);
+	box-shadow:
+		0 14px 24px rgba(121, 49, 54, 0.35),
+		0 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+.resultado-perdiste .boton.primario {
+	color: var(--beige);
+	background: linear-gradient(120deg, var(--rojo-oscuro), var(--rojo));
+	box-shadow: 0 9px 18px rgba(121, 49, 54, 0.25);
+}
+
+.resultado-perdiste .boton.secundario {
+	color: #5d2a2b;
+	background: #fff8f2;
+	border-color: rgba(143, 46, 48, 0.38);
+}
+
+.extra {
+	margin: 15px 0 0;
+	font-weight: 700;
+}
+
+.resultado-ganaste .extra {
+	color: rgba(56, 102, 65, 0.92);
+}
+
+.resultado-perdiste .extra {
+	color: rgba(93, 42, 43, 0.92);
+}
+
+@keyframes subir {
+	from {
+		transform: translateY(0);
+	}
+
+	to {
+		transform: translateY(-130px);
+	}
+}
+
+@keyframes caer {
+	from {
+		transform: translateY(-120px);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 680px) {
+	.opciones {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 640px) {
+	.resultado .panel {
+		padding: 22px 14px 18px;
+		border-radius: 16px;
+	}
+
+	.imagen-ganador,
+	.imagen-perdedor {
+		width: min(280px, 94%);
+	}
+
+	.acciones {
+		gap: 10px;
+	}
+
+	.boton {
+		width: 100%;
+	}
+}

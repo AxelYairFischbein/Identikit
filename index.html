@@ -4,6 +4,7 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP1 Identikit</title>
+    <link rel="stylesheet" href="style.css">
     <!-- Colores: Fresh Greens
     Verde Claro: #a7c957;
     Verde Medio: #6a994e;
@@ -12,142 +13,59 @@
     Beige: #f2e8cf; 
     -->
     <style>
-        :root {
-            --verde-claro: #a7c957;
-            --verde-medio: #6a994e;
-            --verde-oscuro: #386641;
-            --rojo: #bc4749;
-            --beige: #f2e8cf;
-        }
-
-        /* Selector de TIPO */
-        body {
-            background-color: var(--verde-claro);
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 24px;
-            color: var(--verde-oscuro);
-        }
-
-        section {
-            background: var(--beige);
-            border: 3px solid var(--verde-oscuro);
-            border-radius: 14px;
-            max-width: 860px;
-            margin: 0 auto 22px auto;
-            padding: 22px;
-            box-shadow: 0 10px 24px rgba(56, 102, 65, 0.2);
-        }
-
-        h1 {
-            color: var(--rojo);
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 14px;
-            letter-spacing: 0.4px;
-        }
-
-        p{
-            color: var(--verde-oscuro);
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
-
-        img {
-            border-radius: 12px;
-        }
-
-        /* Selector de ID */
-        #bienvenida {
-            color: var(--rojo);
-            font-size: 24px;
-            text-align: center;
-            font-style: italic;
-            margin: 16px 0;
-        }
-
-        /* Selector de CLASE */
-        .subtitulo {
-            color: var(--verde-oscuro);
-            font-size: 20px;
-            margin-top: 20px;
-        }
-
-        .redes {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .redes a {
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--beige);
-            border: 2px solid var(--verde-oscuro);
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .redes a:hover {
-            transform: translateY(-3px);
-            background-color: var(--verde-claro);
-        }
-
-        .redes img {
-            width: 28px;
-            height: 28px;
-            display: block;
-            filter: invert(24%) sepia(20%) saturate(1017%) hue-rotate(76deg) brightness(92%) contrast(90%);
-        }
-
-        .enlaces {
-            max-width: 860px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .enlaces a {
-            color: var(--verde-oscuro);
-            text-decoration: none;
-            font-weight: 700;
-            margin: 0 8px;
-        }
-
-        .enlaces a:hover {
-            color: var(--rojo);
-            text-decoration: underline;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=Playwrite+IE:wght@100..400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playwrite+IE:wght@100..400&display=swap');
     </style>
 </head>
 
 <body style="background-color: #a7c957;">
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <header class="topbar">
+        <label for="menu-toggle" class="menu-btn" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <label for="menu-toggle" class="topbar-titulo">Mi menú</label>
+    </header>
+
+    <label for="menu-toggle" class="menu-overlay" aria-hidden="true"></label>
+
+    <nav class="menu-lateral" aria-label="Navegación principal">
+        <div class="menu-cabecera">
+            <h2>Navegación</h2>
+            <label for="menu-toggle" class="menu-cerrar" aria-label="Cerrar menú">×</label>
+        </div>
+        <a href="index.html">Inicio</a>
+        <a href="tabla.html">Tier List Gatos</a>
+        <a href="juegos/Terraria.html">Terraria</a>
+        <a href="juegos/Trivia.html">Trivia de Gatos</a>
+        <a href="card.html">Acerca de mí</a>
+        <a href="about.html">Sobre el sitio</a>
+        <a href="https://github.com/AxelYairFischbein" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+
     <section>
     <H1>Axel Fischbein</H1>
 
     <img src="img/cats/steve.png" alt="Gato Steve" style="display: block; margin-left: auto; margin-right: auto;">
-    <blockquote id="bienvenida">"Cuando estas agotado y a punto de rendirte, es cuando comienza el verdadero desafio"</blockquote>
+    <blockquote id="bienvenida" class="playwrite-ie">"Cuando estas agotado y a punto de rendirte, es cuando <br>comienza el verdadero desafio"</blockquote>
     <img src="img/separador.gif" alt="Separador" style="display: block; margin-left: auto; margin-right: auto;">
-    <p class="subtitulo">Me llamo Axel Fischbein. Nací el 10 de agosto de 2001. Tengo 24 años. Vivo en Buenos Aires, Argentina. Soy <span style="font-weight: bold; color: #bc4749;">Programador Frontend Universitario</span> en la UADE. Me gusta el anime, los videojuegos y la música.</p>
+    <p class="subtitulo playwrite-ie-2">Me llamo Axel Fischbein. Nací el 10 de agosto de 2001. Tengo 24 años. Vivo en CABA, Argentina. Soy <span style="font-weight: bold; color: #bc4749;">Programador Frontend Universitario</span> en la UADE. Me gustan los gatos, los videojuegos y la música.</p>
     </section>
     <div class="redes">
         <a href="https://github.com/AxelYairFischbein" target="_blank" rel="noopener noreferrer">
             <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" style="display: block;">
         </a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook" style="display: block;">
+        <a href="https://www.linkedin.com/in/axelfischbein/" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="LinkedIn" style="display: block;">
         </a>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" style="display: block;">
+        <a href="https://www.facebook.com/axel.fisch14" target="_blank" rel="noopener noreferrer">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" alt="Facebook" style="display: block;">
         </a>
     </div>
     <div class="enlaces">
-        <a href="about.html">Mas Información sobre mí</a>
+        <a href="tabla.html">Mas Información sobre mí</a>
         <a href="card.html">Acerca de mí</a>
     </div>
 </body>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Terraria HTML</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #87ceeb;
+    }
+    canvas {
+      display: block;
+      image-rendering: pixelated;
+      cursor: crosshair;
+    }
+    .ui {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+    }
+    .panel {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      background: rgba(0,0,0,0.55);
+      color: white;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.4;
+      max-width: 340px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .hotbar {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      background: rgba(0,0,0,0.35);
+      padding: 10px;
+      border-radius: 16px;
+    }
+    .slot {
+      width: 56px;
+      height: 56px;
+      border: 3px solid rgba(255,255,255,0.35);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      box-shadow: inset 0 -8px 0 rgba(0,0,0,0.18);
+    }
+    .slot.active {
+      border-color: white;
+      transform: translateY(-4px);
+    }
+    .crosshair {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      transform: translate(-50%, -50%);
+    }
+    .crosshair::before,
+    .crosshair::after {
+      content: "";
+      position: absolute;
+      background: rgba(255,255,255,0.9);
+    }
+    .crosshair::before {
+      width: 2px;
+      height: 22px;
+      left: 10px;
+      top: 0;
+    }
+    .crosshair::after {
+      width: 22px;
+      height: 2px;
+      left: 0;
+      top: 10px;
+    }
+    .hint {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      background: rgba(0,0,0,0.55);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      max-width: 260px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <div class="ui">
+    <div class="panel">
+      <strong>Mini Terraria en HTML</strong><br>
+      A / D = mover<br>
+      Espacio = saltar<br>
+      Click izquierdo = romper bloque<br>
+      Click derecho = poner bloque<br>
+      Rueda o teclas 1-4 = cambiar bloque
+    </div>
+    <div class="hint" id="stats"></div>
+    <div class="crosshair"></div>
+    <div class="hotbar" id="hotbar"></div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const hotbarEl = document.getElementById('hotbar');
+    const statsEl = document.getElementById('stats');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const TILE = 32;
+    const WORLD_W = 180;
+    const WORLD_H = 70;
+    const GRAVITY = 0.65;
+    const MOVE_SPEED = 0.55;
+    const FRICTION = 0.82;
+    const JUMP_FORCE = -10.8;
+    const REACH = 5;
+
+    const BLOCKS = {
+      0: { name: 'Aire', color: null, solid: false },
+      1: { name: 'Pasto', color: '#5dbb63', solid: true, top: '#7ed957', bottom: '#7a4d2b' },
+      2: { name: 'Tierra', color: '#8b5a2b', solid: true },
+      3: { name: 'Piedra', color: '#7f8c8d', solid: true },
+      4: { name: 'Madera', color: '#a97142', solid: true },
+      5: { name: 'Hojas', color: '#2e8b57', solid: true }
+    };
+
+    const inventory = [1, 2, 3, 4];
+    let selected = 0;
+
+    const world = Array.from({ length: WORLD_H }, () => Array(WORLD_W).fill(0));
+
+    function rand(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function generateWorld() {
+      let ground = 34;
+      for (let x = 0; x < WORLD_W; x++) {
+        ground += rand(-1, 1);
+        ground = Math.max(26, Math.min(42, ground));
+
+        for (let y = ground; y < WORLD_H; y++) {
+          if (y === ground) world[y][x] = 1;
+          else if (y < ground + 4) world[y][x] = 2;
+          else world[y][x] = 3;
+        }
+
+        if (Math.random() < 0.08 && x > 3 && x < WORLD_W - 4) {
+          makeTree(x, ground - 1);
+        }
+      }
+    }
+
+    function makeTree(x, y) {
+      const trunkH = rand(3, 5);
+      for (let i = 0; i < trunkH; i++) {
+        if (inBounds(x, y - i)) world[y - i][x] = 4;
+      }
+      const topY = y - trunkH;
+      for (let yy = -2; yy <= 1; yy++) {
+        for (let xx = -2; xx <= 2; xx++) {
+          const dist = Math.abs(xx) + Math.abs(yy);
+          if (dist < 4 && inBounds(x + xx, topY + yy) && world[topY + yy][x + xx] === 0) {
+            world[topY + yy][x + xx] = 5;
+          }
+        }
+      }
+    }
+
+    function inBounds(x, y) {
+      return x >= 0 && x < WORLD_W && y >= 0 && y < WORLD_H;
+    }
+
+    function getBlock(x, y) {
+      if (!inBounds(x, y)) return 3;
+      return world[y][x];
+    }
+
+    function setBlock(x, y, val) {
+      if (inBounds(x, y)) world[y][x] = val;
+    }
+
+    generateWorld();
+
+    const player = {
+      x: 12 * TILE,
+      y: 8 * TILE,
+      w: TILE * 0.75,
+      h: TILE * 1.5,
+      vx: 0,
+      vy: 0,
+      onGround: false
+    };
+
+    const keys = {};
+    window.addEventListener('keydown', (e) => {
+      keys[e.key.toLowerCase()] = true;
+      if (['1','2','3','4'].includes(e.key)) {
+        selected = Number(e.key) - 1;
+        renderHotbar();
+      }
+      if (e.code === 'Space') e.preventDefault();
+    });
+    window.addEventListener('keyup', (e) => {
+      keys[e.key.toLowerCase()] = false;
+    });
+
+    canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    const mouse = { x: 0, y: 0 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('wheel', (e) => {
+      selected = (selected + (e.deltaY > 0 ? 1 : -1) + inventory.length) % inventory.length;
+      renderHotbar();
+    }, { passive: true });
+
+    canvas.addEventListener('mousedown', (e) => {
+      const worldPos = screenToWorld(mouse.x, mouse.y);
+      const tx = Math.floor(worldPos.x / TILE);
+      const ty = Math.floor(worldPos.y / TILE);
+
+      const px = player.x + player.w / 2;
+      const py = player.y + player.h / 2;
+      const dist = Math.hypot(tx * TILE + TILE / 2 - px, ty * TILE + TILE / 2 - py) / TILE;
+      if (dist > REACH) return;
+
+      if (e.button === 0) {
+        if (getBlock(tx, ty) !== 0) setBlock(tx, ty, 0);
+      }
+
+      if (e.button === 2) {
+        if (getBlock(tx, ty) === 0 && !playerIntersectsBlock(tx, ty)) {
+          setBlock(tx, ty, inventory[selected]);
+        }
+      }
+    });
+
+    function playerIntersectsBlock(tx, ty) {
+      const bx = tx * TILE;
+      const by = ty * TILE;
+      return rectsOverlap(player.x, player.y, player.w, player.h, bx, by, TILE, TILE);
+    }
+
+    function rectsOverlap(ax, ay, aw, ah, bx, by, bw, bh) {
+      return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
+    }
+
+    function isSolidAtPixel(px, py) {
+      const tx = Math.floor(px / TILE);
+      const ty = Math.floor(py / TILE);
+      return BLOCKS[getBlock(tx, ty)].solid;
+    }
+
+    function movePlayer() {
+      if (keys['a']) player.vx -= MOVE_SPEED;
+      if (keys['d']) player.vx += MOVE_SPEED;
+
+      if ((keys[' '] || keys['space']) && player.onGround) {
+        player.vy = JUMP_FORCE;
+        player.onGround = false;
+      }
+
+      player.vy += GRAVITY;
+      player.vx *= FRICTION;
+      if (Math.abs(player.vx) < 0.05) player.vx = 0;
+
+      let nextX = player.x + player.vx;
+      if (player.vx > 0) {
+        const right = nextX + player.w;
+        const top = player.y + 2;
+        const bottom = player.y + player.h - 2;
+        if (isSolidAtPixel(right, top) || isSolidAtPixel(right, bottom)) {
+          nextX = Math.floor(right / TILE) * TILE - player.w - 0.01;
+          player.vx = 0;
+        }
+      } else if (player.vx < 0) {
+        const left = nextX;
+        const top = player.y + 2;
+        const bottom = player.y + player.h - 2;
+        if (isSolidAtPixel(left, top) || isSolidAtPixel(left, bottom)) {
+          nextX = Math.floor(left / TILE + 1) * TILE + 0.01;
+          player.vx = 0;
+        }
+      }
+      player.x = nextX;
+
+      let nextY = player.y + player.vy;
+      player.onGround = false;
+      if (player.vy > 0) {
+        const bottom = nextY + player.h;
+        const left = player.x + 4;
+        const right = player.x + player.w - 4;
+        if (isSolidAtPixel(left, bottom) || isSolidAtPixel(right, bottom)) {
+          nextY = Math.floor(bottom / TILE) * TILE - player.h - 0.01;
+          player.vy = 0;
+          player.onGround = true;
+        }
+      } else if (player.vy < 0) {
+        const top = nextY;
+        const left = player.x + 4;
+        const right = player.x + player.w - 4;
+        if (isSolidAtPixel(left, top) || isSolidAtPixel(right, top)) {
+          nextY = Math.floor(top / TILE + 1) * TILE + 0.01;
+          player.vy = 0;
+        }
+      }
+      player.y = nextY;
+
+      if (player.y > WORLD_H * TILE) {
+        player.x = 12 * TILE;
+        player.y = 8 * TILE;
+        player.vx = 0;
+        player.vy = 0;
+      }
+    }
+
+    function getCamera() {
+      const camX = player.x - canvas.width / 2 + player.w / 2;
+      const camY = player.y - canvas.height / 2 + player.h / 2;
+      return {
+        x: Math.max(0, Math.min(camX, WORLD_W * TILE - canvas.width)),
+        y: Math.max(0, Math.min(camY, WORLD_H * TILE - canvas.height))
+      };
+    }
+
+    function screenToWorld(sx, sy) {
+      const cam = getCamera();
+      return { x: sx + cam.x, y: sy + cam.y };
+    }
+
+    function drawSky() {
+      const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+      grad.addColorStop(0, '#87ceeb');
+      grad.addColorStop(1, '#cfefff');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function drawWorld() {
+      const cam = getCamera();
+      const startX = Math.floor(cam.x / TILE);
+      const startY = Math.floor(cam.y / TILE);
+      const endX = Math.ceil((cam.x + canvas.width) / TILE);
+      const endY = Math.ceil((cam.y + canvas.height) / TILE);
+
+      for (let y = startY; y < endY; y++) {
+        for (let x = startX; x < endX; x++) {
+          const id = getBlock(x, y);
+          if (id === 0) continue;
+          const b = BLOCKS[id];
+          const sx = x * TILE - cam.x;
+          const sy = y * TILE - cam.y;
+
+          if (id === 1) {
+            ctx.fillStyle = b.bottom;
+            ctx.fillRect(sx, sy, TILE, TILE);
+            ctx.fillStyle = b.top;
+            ctx.fillRect(sx, sy, TILE, 9);
+          } else {
+            ctx.fillStyle = b.color;
+            ctx.fillRect(sx, sy, TILE, TILE);
+          }
+
+          ctx.fillStyle = 'rgba(255,255,255,0.08)';
+          ctx.fillRect(sx + 2, sy + 2, TILE - 4, 4);
+          ctx.strokeStyle = 'rgba(0,0,0,0.18)';
+          ctx.strokeRect(sx, sy, TILE, TILE);
+        }
+      }
+    }
+
+    function drawPlayer() {
+      const cam = getCamera();
+      const x = player.x - cam.x;
+      const y = player.y - cam.y;
+
+      ctx.fillStyle = '#2c3e50';
+      ctx.fillRect(x + 6, y + 16, player.w - 12, player.h - 16);
+      ctx.fillStyle = '#f1c27d';
+      ctx.fillRect(x + 4, y, player.w - 8, 18);
+      ctx.fillStyle = '#3498db';
+      ctx.fillRect(x + 8, y + 20, player.w - 16, 18);
+      ctx.fillStyle = '#1f2d3d';
+      ctx.fillRect(x + 8, y + 38, 10, 10);
+      ctx.fillRect(x + player.w - 18, y + 38, 10, 10);
+    }
+
+    function drawSelection() {
+      const cam = getCamera();
+      const wp = screenToWorld(mouse.x, mouse.y);
+      const tx = Math.floor(wp.x / TILE);
+      const ty = Math.floor(wp.y / TILE);
+
+      const px = player.x + player.w / 2;
+      const py = player.y + player.h / 2;
+      const dist = Math.hypot(tx * TILE + TILE / 2 - px, ty * TILE + TILE / 2 - py) / TILE;
+      if (dist > REACH) return;
+
+      const sx = tx * TILE - cam.x;
+      const sy = ty * TILE - cam.y;
+      ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(sx + 1, sy + 1, TILE - 2, TILE - 2);
+    }
+
+    function renderHotbar() {
+      hotbarEl.innerHTML = '';
+      inventory.forEach((id, i) => {
+        const slot = document.createElement('div');
+        slot.className = 'slot' + (i === selected ? ' active' : '');
+        slot.style.background = BLOCKS[id].color || '#999';
+        slot.textContent = i + 1;
+        slot.title = BLOCKS[id].name;
+        hotbarEl.appendChild(slot);
+      });
+    }
+
+    function renderStats() {
+      const tx = Math.floor((player.x + player.w / 2) / TILE);
+      const ty = Math.floor((player.y + player.h / 2) / TILE);
+      statsEl.innerHTML = `Bloque: <strong>${BLOCKS[inventory[selected]].name}</strong><br>Posición: X ${tx}, Y ${ty}`;
+    }
+
+    function loop() {
+      movePlayer();
+      drawSky();
+      drawWorld();
+      drawPlayer();
+      drawSelection();
+      renderStats();
+      requestAnimationFrame(loop);
+    }
+
+    renderHotbar();
+    loop();
+  </script>
+</body>
+</html>

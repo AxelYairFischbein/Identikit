@@ -10,40 +10,62 @@
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap');
 
         :root {
-            --bg-top: #ffe9d4;
-            --bg-bottom: #ffd8b0;
-            --ink: #2b1f17;
-            --accent: #c04c00;
-            --line: rgba(255, 255, 255, 0.65);
-            --panel-1: #12304a;
-            --panel-2: #1a3f5f;
+            --verde-claro: #a7c957;
+            --verde-medio: #6a994e;
+            --verde-oscuro: #386641;
+            --rojo: #bc4749;
+            --beige: #f2e8cf;
+            --ink: #1f3425;
+            --line: rgba(242, 232, 207, 0.75);
+            --panel-1: #2f5f39;
+            --panel-2: #3f7a47;
             --tier-s: #7c3aed;
-            --tier-a: #90ee90;
-            --tier-b: #3f8f5a;
-            --tier-c: #ffd54a;
-            --tier-d: #e53935;
+            --tier-a: #9fcd4a;
+            --tier-b: #5f9b44;
+            --tier-c: #ffd166;
+            --tier-d: #d9534f;
         }
 
         body {
             margin: 0;
             min-height: 100vh;
-            text-align: center;
             color: var(--ink);
             font-family: 'Manrope', 'Trebuchet MS', sans-serif;
             background:
-                radial-gradient(circle at 10% 10%, #fff7ef 0%, transparent 35%),
-                radial-gradient(circle at 90% 20%, #ffd9b8 0%, transparent 30%),
-                linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-            padding: 28px 14px 42px;
+                radial-gradient(circle at 14% 12%, rgba(242, 232, 207, 0.95) 0%, rgba(242, 232, 207, 0) 35%),
+                radial-gradient(circle at 88% 18%, rgba(188, 71, 73, 0.16) 0%, rgba(188, 71, 73, 0) 28%),
+                linear-gradient(165deg, var(--verde-claro) 0%, #95bf4a 28%, var(--verde-medio) 70%, var(--verde-oscuro) 100%);
+            padding: 32px 14px 42px;
+        }
+
+        .contenedor {
+            width: min(980px, 95vw);
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(242, 232, 207, 0.94), rgba(242, 232, 207, 0.9));
+            border: 3px solid rgba(56, 102, 65, 0.9);
+            border-radius: 24px;
+            box-shadow:
+                0 18px 36px rgba(37, 69, 44, 0.34),
+                0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+            padding: 24px 16px 20px;
         }
 
         h1 {
-            margin: 0 0 18px;
+            margin: 0;
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--accent);
-            text-shadow: 0 2px 0 rgba(255, 255, 255, 0.75);
+            color: var(--rojo);
+            text-shadow: 0 2px 0 rgba(255, 255, 255, 0.75), 0 8px 18px rgba(188, 71, 73, 0.18);
+            text-align: center;
+        }
+
+        .subtitulo {
+            margin: 8px 0 18px;
+            text-align: center;
+            color: var(--verde-oscuro);
+            font-weight: 700;
+            letter-spacing: 0.4px;
         }
 
         table {
@@ -54,8 +76,8 @@
             border-radius: 18px;
             overflow: hidden;
             box-shadow:
-                0 16px 30px rgba(20, 40, 60, 0.32),
-                0 1px 0 rgba(255, 255, 255, 0.18) inset;
+                0 16px 30px rgba(20, 40, 60, 0.28),
+                0 1px 0 rgba(255, 255, 255, 0.2) inset;
         }
 
         th,
@@ -65,15 +87,15 @@
         }
 
         th {
-            background: linear-gradient(90deg, #ff7a18 0%, #ffc06a 100%);
-            color: #fff;
+            background: linear-gradient(90deg, var(--verde-oscuro) 0%, var(--verde-medio) 100%);
+            color: var(--beige);
             font-weight: 800;
             font-size: 15px;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
         }
 
         td:not(:first-child) {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(242, 232, 207, 0.08);
         }
 
         td:first-child {
@@ -126,7 +148,7 @@
             height: 100px;
             object-fit: cover;
             border-radius: 12px;
-            border: 3px solid rgba(255, 255, 255, 0.9);
+            border: 3px solid rgba(242, 232, 207, 0.95);
             box-shadow:
                 0 6px 10px rgba(0, 0, 0, 0.16),
                 0 0 0 1px rgba(0, 0, 0, 0.06) inset;
@@ -140,7 +162,19 @@
                 0 0 0 1px rgba(0, 0, 0, 0.08) inset;
         }
 
+        .leyenda {
+            margin-top: 14px;
+            font-size: 14px;
+            color: rgba(31, 52, 37, 0.85);
+            text-align: center;
+        }
+
         @media (max-width: 560px) {
+            .contenedor {
+                border-radius: 18px;
+                padding: 18px 10px 14px;
+            }
+
             table {
                 width: 96vw;
             }
@@ -151,57 +185,64 @@
                 border-width: 2px;
             }
 
+            td:first-child {
+                width: 54px;
+                font-size: 16px;
+            }
+
             .elementos img {
                 width: 82px;
                 height: 82px;
             }
         }
     </style>
-    <h1>Tier List</h1>
-    <table>
-        <tr>
-            <th>Tier</th>
-            <th>Elementos</th>
-        </tr>
-        <tr class="tier-s">
-            <td>S</td>
-            <td class="elementos">
-                <img src="img/cats/rigby.png" alt="Rigby" width="100" height="100">
-                <img src="img/cats/demon.png" alt="demon" width="100" height="100">
-                <img src="img/cats/whereiam.png" alt="whereiam" width="100" height="100">
-            </td>
-        </tr>
-        <tr class="tier-a">
-            <td>A</td>
-            <td class="elementos">
-                <img src="img/cats/front_cat.png" alt="Front_cat" width="100" height="100">
-                <img src="img/cats/black.png" alt="black" width="100" height="100">
-                <img src="img/cats/smile.png" alt="smile" width="100" height="100">
-                <img src="img/cats/cleric.png" alt="cleric" width="100" height="100">
-            </td>
-        </tr>
-        <tr class="tier-b">
-            <td>B</td>
-            <td class="elementos">
-                <img src="img/cats/fingerupcat.png" alt="fingerupcat" width="100" height="100">
-                <img src="img/cats/eyesopen.png" alt="eyesopen" width="100" height="100">
-                <img src="img/cats/myears.png" alt="myears" width="100" height="100">
-            </td>
-        </tr>
-        <tr class="tier-c">
-            <td>C</td>
-            <td class="elementos">
-                <img src="img/cats/judge.png" alt="judge" width="100" height="100">
-                <img src="img/cats/cute.png" alt="cute" width="100" height="100">
+    <main class="contenedor">
+        <h1>Tier List</h1>
+        <p class="subtitulo">Ranking de los mejores Memes de Gatos</p>
+        <table>
+            <tr>
+                <th>Tier</th>
+                <th>Elementos</th>
+            </tr>
+            <tr class="tier-s">
+                <td>S</td>
+                <td class="elementos">
+                    <img src="img/cats/rigby.png" alt="Rigby" width="100" height="100">
+                    <img src="img/cats/demon.png" alt="demon" width="100" height="100">
+                    <img src="img/cats/whereiam.png" alt="whereiam" width="100" height="100">
+                </td>
+            </tr>
+            <tr class="tier-a">
+                <td>A</td>
+                <td class="elementos">
+                    <img src="img/cats/front_cat.png" alt="Front_cat" width="100" height="100">
+                    <img src="img/cats/black.png" alt="black" width="100" height="100">
+                    <img src="img/cats/smile.png" alt="smile" width="100" height="100">
+                    <img src="img/cats/cleric.png" alt="cleric" width="100" height="100">
+                </td>
+            </tr>
+            <tr class="tier-b">
+                <td>B</td>
+                <td class="elementos">
+                    <img src="img/cats/fingerupcat.png" alt="fingerupcat" width="100" height="100">
+                    <img src="img/cats/eyesopen.png" alt="eyesopen" width="100" height="100">
+                    <img src="img/cats/myears.png" alt="myears" width="100" height="100">
+                </td>
+            </tr>
+            <tr class="tier-c">
+                <td>C</td>
+                <td class="elementos">
+                    <img src="img/cats/judge.png" alt="judge" width="100" height="100">
+                    <img src="img/cats/cute.png" alt="cute" width="100" height="100">
 
-            </td>
-        </tr>
-        <tr class="tier-d">
-            <td>D</td>
-            <td class="elementos">
-                <img src="img/cats/larry.png" alt="larry" width="100" height="100">
-            </td>
-        </tr>
-    </table>
+                </td>
+            </tr>
+            <tr class="tier-d">
+                <td>D</td>
+                <td class="elementos">
+                    <img src="img/cats/larry.png" alt="larry" width="100" height="100">
+                </td>
+            </tr>
+    </main>
 </body>
 </html>
