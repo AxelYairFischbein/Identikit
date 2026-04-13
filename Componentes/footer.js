@@ -20,8 +20,7 @@ function buildFooterTemplate(options = {}) {
 				<p class="footer-copy">&copy; ${year} ${brand}</p>
 
 				<div class="footer-stores" aria-label="Tiendas de aplicaciones">
-					<a href="#">Contacto</a>
-					<a href="#">Ayuda</a>
+					<a href="card.html">Contacto</a>
 				</div>
 			</div>
 		</footer>

@@ -26,6 +26,12 @@ body.has-menu {
 	padding: 0;
 }
 
+body.has-menu.resultado {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
 body.has-menu #menu-root {
 	width: 100%;
 }
@@ -39,6 +45,16 @@ body.has-menu main {
 	width: min(920px, calc(100% - 40px));
 }
 
+body.has-menu.resultado main {
+	margin: 35px auto;
+	flex: 0 0 auto;
+}
+
+body.has-menu.resultado #footer-root {
+	width: 100%;
+	margin-top: auto;
+}
+
 body.has-menu.trivia-home,
 body.has-menu.trivia-question {
 	display: grid;
@@ -50,7 +66,8 @@ body.has-menu.trivia-home main,
 body.has-menu.trivia-question main {
 	margin: 0 auto;
 	align-self: center;
-	margin-top: -100px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .trivia-home {
@@ -182,7 +199,8 @@ body.has-menu.trivia-question main {
 }
 
 .resultado {
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .resultado-ganaste {

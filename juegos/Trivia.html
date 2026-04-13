@@ -17,9 +17,12 @@
             <a class="boton secundario" href="../index.html">Volver Al Inicio</a>
         </div>
     </main>
+    <div id="footer-root"></div>
     <script type="module">
     import { renderMenu } from "../Componentes/menu.js";
+    import { renderFooter } from "../Componentes/footer.js";
     renderMenu("menu-root", { basePath: "../" });
+    renderFooter("footer-root");
     </script>
 </body>
 </html>

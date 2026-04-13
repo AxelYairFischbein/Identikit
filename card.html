@@ -1,34 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre mí</title>
+    <title>Tarjeta de Contacto</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .card-contacto-page {
+            min-height: 100vh;
+            margin: 0;
+            background:
+                radial-gradient(circle at 12% 12%, rgba(242, 232, 207, 0.95) 0%, rgba(242, 232, 207, 0) 34%),
+                radial-gradient(circle at 88% 18%, rgba(188, 71, 73, 0.18) 0%, rgba(188, 71, 73, 0) 30%),
+                linear-gradient(160deg, var(--verde-claro) 0%, #94bf49 32%, var(--verde-medio) 74%, var(--verde-oscuro) 100%);
+        }
+
+        .card-contacto-wrap {
+            width: min(780px, calc(100% - 32px));
+            margin: 28px auto;
+        }
+
+        .card-contacto {
+            background: linear-gradient(180deg, rgba(242, 232, 207, 0.97), rgba(242, 232, 207, 0.92));
+            border: 3px solid rgba(56, 102, 65, 0.9);
+            border-radius: 22px;
+            box-shadow: 0 16px 34px rgba(32, 63, 41, 0.28);
+            padding: 26px;
+        }
+
+        .card-contacto h1 {
+            margin: 0;
+            text-align: left;
+            color: var(--rojo);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+        }
+
+        .card-contacto-sub {
+            margin: 8px 0 18px;
+            color: var(--verde-oscuro);
+            font-weight: 700;
+        }
+
+        .datos-contacto {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .dato-label {
+            font-weight: 800;
+            color: var(--verde-oscuro);
+        }
+
+        .dato-valor {
+            color: #25472f;
+            background: rgba(255, 255, 255, 0.62);
+            border: 1px solid rgba(56, 102, 65, 0.28);
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .dato-valor a {
+            color: var(--verde-oscuro);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .dato-valor a:hover {
+            color: var(--rojo);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .card-contacto-wrap {
+                width: min(780px, calc(100% - 20px));
+                margin: 18px auto;
+            }
+
+            .card-contacto {
+                padding: 18px;
+                border-radius: 16px;
+            }
+
+            .datos-contacto {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+    </style>
 </head>
+<body class="card-contacto-page">
+    <div id="menu-root"></div>
 
-<body style="margin: 0; background-color: crimson;">
+    <main class="card-contacto-wrap">
+        <section class="card-contacto">
+            <h1>Tarjeta de contacto</h1>
+            <p class="card-contacto-sub">Informacion de contacto personal</p>
 
-    <center>
-        <section style="background-color: blueviolet; width: 600px; border-radius: 12px">
-            <h1 style="height: 30px; line-height: 48px;">Sobre mí</h1>
-            <section style="width: 600px; text-align: left; background-color: cornflowerblue; margin-bottom: 50px; border-bottom-left-radius: 12px; 
-                border-bottom-right-radius: 12px; height: 200px;">
-                <img src="gato.png" alt="Foto de Steve Jobs"
-                    style="width: 150px; float: right; margin-right: 12px; margin-top: 12px; border-radius: 12px;">
-                <section style="width: 400px;">
-                    <h2 style="margin-left: 16px; padding-top: 16px;">Conocé más</h2>
-                    <p style="margin-left: 16px;">
-                        Lorem, ipsum dolor sit amet consectetur Nihil ipsam qui reiciendis
-                        deserunt deleniti mollitia consectetur quaerat, enim,
-                        illum minima labore fugiat mod nostrum.
-                    </p>
-                </section>
-            </section>
+            <div class="datos-contacto">
+                <span class="dato-label">Nombre</span>
+                <span class="dato-valor">Axel Fischbein</span>
 
-    </center>
+                <span class="dato-label">Mail</span>
+                <span class="dato-valor">axelfischbein@gmail.com</span>
 
+                <span class="dato-label">LinkedIn</span>
+                <span class="dato-valor">
+                    <a href="https://www.linkedin.com/in/axelfischbein/" target="_blank" rel="noopener noreferrer">
+                        linkedin.com/in/axelfischbein
+                    </a>
+                </span>
 
+                <span class="dato-label">Telefono</span>
+                <span class="dato-valor">+54 9 11 31694814</span>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script type="module">
+        import { renderMenu } from "./Componentes/menu.js";
+        import { renderFooter } from "./Componentes/footer.js";
+
+        renderMenu("menu-root");
+        renderFooter("footer-root");
+    </script>
 </body>
-
 </html>
