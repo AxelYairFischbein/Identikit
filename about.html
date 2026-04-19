@@ -46,11 +46,38 @@
             font-size: 1.05rem;
         }
 
+        .about-head {
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .about-avatar {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 3px solid var(--verde-oscuro);
+            box-shadow: 0 8px 16px rgba(32, 63, 41, 0.2);
+            float: right;
+            margin: 0 0 8px 14px;
+            display: block;
+        }
+
+        .about-head-text {
+            min-width: 0;
+        }
+
         .about-text {
-            margin-top: 14px;
+            margin-top: 10px;
             color: #294a30;
             font-size: 1.05rem;
             line-height: 1.72;
+        }
+
+        .about-card::after {
+            content: "";
+            display: block;
+            clear: both;
         }
 
         .about-text strong {
@@ -103,6 +130,17 @@
                 border-radius: 16px;
             }
 
+            .about-head {
+                margin-bottom: 6px;
+            }
+
+            .about-avatar {
+                width: 100px;
+                height: 100px;
+                float: right;
+                margin: 0 0 8px 10px;
+            }
+
             .skills-grid {
                 grid-template-columns: 1fr;
             }
@@ -114,8 +152,13 @@
 
     <main class="about-wrap">
         <section class="about-card">
-            <h1 class="about-title">Sobre mi</h1>
-            <p class="about-subtitle">Axel Fischbein · CABA, Argentina · 24 años</p>
+            <div class="about-head">
+                <img src="img/axel.png" alt="Axel Fischbein" class="about-avatar">
+                <div class="about-head-text">
+                    <h1 class="about-title">Sobre mi</h1>
+                    <p class="about-subtitle">Axel Fischbein · CABA, Argentina · 24 años</p>
+                </div>
+            </div>
             <p class="about-text">
                 Soy <strong>Programador Frontend Universitario</strong> en UADE. Me interesa crear interfaces claras,
                 funcionales y con buena experiencia de usuario. Disfruto combinar diseno visual con codigo para que
