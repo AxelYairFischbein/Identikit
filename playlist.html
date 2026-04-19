@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Favorita</title>
+    <link rel="icon" type="image/jpeg" href="img/manprofile.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="playlist-page has-menu">
+    <div id="menu-root"></div>
+
+    <main class="playlist-contenedor" aria-label="Contenido multimedia">
+        <header class="playlist-hero">
+            <h1>Mi Playlist Favorita</h1>
+            <p class="playlist-intro">Esta página reúne la música que suelo escuchar para programar, estudiar y relajarme.</p>
+        </header>
+
+        <section class="playlist-grid" aria-label="Secciones de musica">
+            <article class="playlist-card" aria-label="Playlist en Spotify">
+                <h2>Playlist Principal</h2>
+                <p>Estas canciones me acompañan mientras codeo y curso en la facu.</p>
+                <div class="playlist-subsection">
+                    <h3>Top 5 Canciones Favoritas</h3>
+                    <ol class="playlist-songs">
+                        <li><a href="https://www.youtube.com/watch?v=2ZK1CT_FS3w&list=RD2ZK1CT_FS3w&start_radio=1" target="_blank" rel="noopener noreferrer">Tan Solo - Los Piojos</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=R5cbxTPZNL0&list=PLUFD88gfSxI9tFdXQh11GTmUOgw-9UD4o" target="_blank" rel="noopener noreferrer">Enamorado Tuyo - El Cuarteto de Nos</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=Lvd0qiVLOOk&list=RDLvd0qiVLOOk&start_radio=1" target="_blank" rel="noopener noreferrer">Need 2 - Pinegrove</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=xy3AcmW0lrQ&list=RDxy3AcmW0lrQ&start_radio=1" target="_blank" rel="noopener noreferrer">End of Beginning - Djo</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=OVh0bMNSFss&list=RDOVh0bMNSFss&start_radio=1" target="_blank" rel="noopener noreferrer">GigaChad Theme - Phonk</a></li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="playlist-card playlist-current" aria-label="Tema favorito del momento">
+                <h2>Tema Del Momento</h2>
+                <p>Este es el tema que más escucho en este momento.</p>
+                <div class="playlist-subsection playlist-now">
+                    <h3>GigaChad Theme - Phonk</h3>
+                    <iframe class="playlist-embed video" src="https://www.youtube.com/embed/OVh0bMNSFss?si=sNeD3c_-tGHMcWgm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <h3 class="playlist-motivo">Me gusta esta canción porque me motiva y me da la energía suficiente para levantarme y vencer lo que sea.</h3>
+            </article>
+        </section>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script type="module">
+        import { renderMenu } from "./Componentes/menu.js";
+        import { renderFooter } from "./Componentes/footer.js";
+
+        renderMenu("menu-root");
+        renderFooter("footer-root");
+    </script>
+</body>
+</html>
