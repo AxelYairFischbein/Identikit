@@ -21,12 +21,14 @@ function buildMenuTemplate(basePath = "") {
 
 		<nav class="menu-lateral" aria-label="Navegación principal">
 			<div class="menu-cabecera"></div>
-			<a href="${basePath}index.html">Inicio</a>
-			<a href="${basePath}tabla.html">Tier List Gatos</a>
-			<a href="${basePath}juegos/Trivia.html">Trivia de Gatos</a>
-			<a href="${basePath}about.html">Acerca de mí</a>
-			<a href="${basePath}card.html">Tarjeta de contacto</a>
-			<a href="https://github.com/AxelYairFischbein" target="_blank" rel="noopener noreferrer">GitHub</a>
+			<ul class="menu-lista">
+				<li><a href="${basePath}index.html">Inicio</a></li>
+				<li><a href="${basePath}tabla.html">Tier List Gatos</a></li>
+				<li><a href="${basePath}juegos/Trivia.html">Trivia de Gatos</a></li>
+				<li><a href="${basePath}about.html">Acerca de mí</a></li>
+				<li><a href="${basePath}card.html">Tarjeta de contacto</a></li>
+				<li><a href="https://github.com/AxelYairFischbein" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+			</ul>
 		</nav>
 
 		<aside class="contact-lateral" aria-label="Formulario de contacto">
