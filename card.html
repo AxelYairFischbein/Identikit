@@ -62,6 +62,77 @@
             padding: 10px 12px;
         }
 
+        .dato-valor.telefono {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .telefono-texto {
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .phone-toggle {
+            border: 1px solid rgba(56, 102, 65, 0.35);
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--verde-oscuro);
+            border-radius: 999px;
+            padding: 6px 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: transform 0.18s ease, background-color 0.18s ease;
+        }
+
+        .phone-toggle:hover {
+            transform: translateY(-1px);
+            background: rgba(167, 201, 87, 0.3);
+        }
+
+        .phone-toggle:focus-visible {
+            outline: 3px solid rgba(106, 153, 78, 0.35);
+            outline-offset: 2px;
+        }
+
+        .eye-icon {
+            position: relative;
+            width: 18px;
+            height: 12px;
+            border: 2px solid currentColor;
+            border-radius: 12px / 9px;
+            display: inline-block;
+        }
+
+        .eye-icon::before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: currentColor;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .phone-toggle[aria-pressed="false"] .eye-icon::after {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 2px;
+            background: currentColor;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-28deg);
+            border-radius: 2px;
+        }
+
         .dato-valor a {
             color: var(--verde-oscuro);
             font-weight: 700;
@@ -114,7 +185,13 @@
                 </span>
 
                 <span class="dato-label">Telefono</span>
-                <span class="dato-valor">+54 9 11 31694814</span>
+                <span class="dato-valor telefono">
+                    <span id="telefono-texto" class="telefono-texto" data-full-phone="+54 9 11 31694814">+** * ** ********</span>
+                    <button id="telefono-toggle" type="button" class="phone-toggle" aria-pressed="false" aria-label="Mostrar telefono">
+                        <span class="eye-icon" aria-hidden="true"></span>
+                        <span id="telefono-toggle-label">Mostrar</span>
+                    </button>
+                </span>
             </div>
         </section>
     </main>
@@ -127,6 +204,25 @@
 
         renderMenu("menu-root");
         renderFooter("footer-root");
+
+        const telefonoTexto = document.getElementById("telefono-texto");
+        const telefonoToggle = document.getElementById("telefono-toggle");
+        const telefonoToggleLabel = document.getElementById("telefono-toggle-label");
+
+        if (telefonoTexto && telefonoToggle && telefonoToggleLabel) {
+            const telefonoCompleto = telefonoTexto.dataset.fullPhone ?? "+54 9 11 31694814";
+            const telefonoOculto = "+** * ** ********";
+
+            telefonoToggle.addEventListener("click", () => {
+                const visible = telefonoToggle.getAttribute("aria-pressed") === "true";
+                const mostrar = !visible;
+
+                telefonoTexto.textContent = mostrar ? telefonoCompleto : telefonoOculto;
+                telefonoToggle.setAttribute("aria-pressed", mostrar ? "true" : "false");
+                telefonoToggle.setAttribute("aria-label", mostrar ? "Ocultar telefono" : "Mostrar telefono");
+                telefonoToggleLabel.textContent = mostrar ? "Ocultar" : "Mostrar";
+            });
+        }
     </script>
 </body>
 </html>

@@ -27,7 +27,7 @@ function buildMenuTemplate(basePath = "") {
 				<li><a href="${basePath}juegos/Trivia.html">Trivia de Gatos</a></li>
 				<li><a href="${basePath}about.html">Acerca de mí</a></li>
 				<li><a href="${basePath}card.html">Tarjeta de contacto</a></li>
-				<li><a href="${basePath}playlist.html">Spotify</a></li>
+				<li><a href="${basePath}playlist.html">Playlist</a></li>
 			</ul>
 		</nav>
 
