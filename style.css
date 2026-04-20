@@ -788,34 +788,32 @@ img {
 
 /* Canción - Video Player Page */
 .cancion-page {
-    background:
-        radial-gradient(circle at 12% 14%, rgba(242, 232, 207, 0.9), rgba(242, 232, 207, 0) 35%),
-        radial-gradient(circle at 86% 24%, rgba(188, 71, 73, 0.18), rgba(188, 71, 73, 0) 30%),
-        linear-gradient(145deg, #c7e48a 0%, var(--verde-claro) 44%, var(--verde-medio) 100%);
+    background: var(--beige);
     color: var(--verde-oscuro);
 }
 
 .cancion-contenedor {
     position: static;
-    width: min(1020px, calc(100% - 32px));
-    margin: 26px auto 30px;
+    width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
+    box-sizing: border-box;
 }
 
 .cancion-card {
     position: static;
     background: rgba(242, 232, 207, 0.96);
-    border: 3px solid var(--verde-oscuro);
     border-radius: 18px;
-    box-shadow: 0 12px 24px rgba(56, 102, 65, 0.22);
-    padding: 18px;
+    box-shadow: none;
+    padding: 5px 14px 14px;
 }
 
 .cancion-card h2 {
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-size: 24px;
 }
 
 .cancion-video-wrapper {
@@ -825,7 +823,7 @@ img {
     height: 0;
     overflow: hidden;
     border-radius: 12px;
-    margin-top: 14px;
+    margin-top: 10px;
     background: #10231a;
 }
 
@@ -862,15 +860,15 @@ img {
 }
 
 .cancion-descripcion {
-    padding: 12px 14px;
+    padding: 10px 12px;
     border-radius: 10px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.35));
     color: rgba(44, 85, 52, 0.96);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     line-height: 1.45;
     letter-spacing: 0.1px;
-    box-shadow: 0 6px 12px rgba(56, 102, 65, 0.1);
+    box-shadow: none;
 }
 
 @media (max-width: 860px) {
@@ -924,16 +922,16 @@ img {
 
 .playlist-embed {
     width: 100%;
-    min-height: 352px;
+    min-height: 360px;
     border: 0;
     border-radius: 12px;
-    margin-top: 14px;
+    margin-top: 12px;
     display: block;
-    background: #10231a;
+    background: rgba(242, 232, 207, 0.96);
 }
 
 .playlist-embed.video {
-    min-height: 260px;
+    min-height: 460px;
 }
 
 .playlist-lista ol {
@@ -1041,6 +1039,6 @@ img {
 
     .playlist-embed,
     .playlist-embed.video {
-        min-height: 240px;
+        min-height: 460px;
     }
 }
