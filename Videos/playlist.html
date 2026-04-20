@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Favorita</title>
+    <link rel="icon" type="image/jpeg" href="../img/manprofile.png">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="playlist-page has-menu">
+    <div id="menu-root"></div>
+
+    <main class="playlist-contenedor" aria-label="Contenido multimedia">
+        <header class="playlist-hero">
+            <h1>Mi Playlist Favorita</h1>
+            <p class="playlist-intro">Esta página reúne la música que suelo escuchar para programar, estudiar y relajarme.</p>
+        </header>
+
+        <section class="playlist-grid" aria-label="Secciones de musica">
+            <input class="song-toggle" type="radio" name="song" id="song-1">
+            <input class="song-toggle" type="radio" name="song" id="song-2" checked>
+            <input class="song-toggle" type="radio" name="song" id="song-3">
+            <input class="song-toggle" type="radio" name="song" id="song-4">
+            <input class="song-toggle" type="radio" name="song" id="song-5">
+
+            <article class="playlist-card" aria-label="Playlist en Spotify">
+                <h2>Playlist Principal</h2>
+                <p>Estas canciones me acompañan mientras codeo y curso en la facu.</p>
+                <div class="playlist-subsection">
+                    <h3>Top 5 Canciones Favoritas</h3>
+                    <ol class="playlist-songs">
+                        <li><label for="song-1" class="song-link">Tan Solo - Los Piojos</label></li>
+                        <li><label for="song-2" class="song-link">GigaChad Theme - Phonk</label></li>
+                        <li><label for="song-3" class="song-link">Enamorado Tuyo - El Cuarteto de Nos</label></li>
+                        <li><label for="song-4" class="song-link">Need 2 - Pinegrove</label></li>
+                        <li><label for="song-5" class="song-link">End of Beginning - Djo</label></li>
+                    </ol>
+                </div>
+            </article>
+
+            <article class="playlist-card playlist-current" aria-label="Tema favorito del momento">
+                <h2>Tema Del Momento</h2>
+                <p>Este es el tema que más escucho en este momento.</p>
+                <div class="playlist-subsection playlist-now">
+                    <h3 class="song-title song-title-1">Tan Solo - Los Piojos</h3>
+                    <h3 class="song-title song-title-2">GigaChad Theme - Phonk</h3>
+                    <h3 class="song-title song-title-3">Enamorado Tuyo - El Cuarteto de Nos</h3>
+                    <h3 class="song-title song-title-4">Need 2 - Pinegrove</h3>
+                    <h3 class="song-title song-title-5">End of Beginning - Djo</h3>
+
+                    <div class="cancion-video-container">
+                        <iframe class="cancion-video-iframe song-video song-video-1" src="https://www.youtube.com/embed/2ZK1CT_FS3w?si=ggHVvCZ_rtYHLpL5" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-2" src="https://www.youtube.com/embed/OVh0bMNSFss?si=sNeD3c_-tGHMcWgm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-3" src="https://www.youtube.com/embed/R5cbxTPZNL0?si=9gSX0jWjG7dL681W" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-4" src="https://www.youtube.com/embed/Lvd0qiVLOOk?si=yB9X0AtYTQJBEukp" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-5" src="https://www.youtube.com/embed/xy3AcmW0lrQ?si=wGkIcNge5cPmu6xc" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="cancion-descripcion song-desc song-desc-1">Una canción clásica de Los Piojos que toca el corazón con su melodía única y letra emotiva.</h3>
+                    <h3 class="cancion-descripcion song-desc song-desc-2">Me gusta esta canción porque me motiva y me da la energía suficiente para levantarme y vencer lo que sea.</h3>
+                    <h3 class="cancion-descripcion song-desc song-desc-3">Este tema de El Cuarteto de Nos es una joya musical que combina romance y nostalgia de manera perfecta.</h3>
+                    <h3 class="cancion-descripcion song-desc song-desc-4">Una canción indie que te atrapa desde el primer momento con su ritmo cautivador y letras introspectivas.</h3>
+                    <h3 class="cancion-descripcion song-desc song-desc-5">Djo nos regala una melodía envolvente que es perfecta para esos momentos de reflexión y relajación.</h3>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script type="module">
+        import { renderMenu } from "../Componentes/menu.js";
+        import { renderFooter } from "../Componentes/footer.js";
+
+        renderMenu("menu-root");
+        renderFooter("footer-root");
+    </script>
+</body>
+</html>
