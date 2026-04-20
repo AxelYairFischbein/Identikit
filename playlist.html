@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playlist Favorita</title>
-    <link rel="icon" type="image/jpeg" href="../img/manprofile.png">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/jpeg" href="img/manprofile.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="playlist-page has-menu">
     <div id="menu-root"></div>
@@ -17,8 +17,8 @@
         </header>
 
         <section class="playlist-grid" aria-label="Secciones de musica">
-            <input class="song-toggle" type="radio" name="song" id="song-1">
-            <input class="song-toggle" type="radio" name="song" id="song-2" checked>
+            <input class="song-toggle" type="radio" name="song" id="song-1" checked>
+            <input class="song-toggle" type="radio" name="song" id="song-2">
             <input class="song-toggle" type="radio" name="song" id="song-3">
             <input class="song-toggle" type="radio" name="song" id="song-4">
             <input class="song-toggle" type="radio" name="song" id="song-5">
@@ -49,15 +49,15 @@
                     <h3 class="song-title song-title-5">End of Beginning - Djo</h3>
 
                     <div class="cancion-video-container">
-                        <iframe class="cancion-video-iframe song-video song-video-1" src="https://www.youtube.com/embed/2ZK1CT_FS3w?si=ggHVvCZ_rtYHLpL5" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <iframe class="cancion-video-iframe song-video song-video-2" src="https://www.youtube.com/embed/OVh0bMNSFss?si=sNeD3c_-tGHMcWgm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <iframe class="cancion-video-iframe song-video song-video-3" src="https://www.youtube.com/embed/R5cbxTPZNL0?si=9gSX0jWjG7dL681W" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <iframe class="cancion-video-iframe song-video song-video-4" src="https://www.youtube.com/embed/Lvd0qiVLOOk?si=yB9X0AtYTQJBEukp" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <iframe class="cancion-video-iframe song-video song-video-5" src="https://www.youtube.com/embed/xy3AcmW0lrQ?si=wGkIcNge5cPmu6xc" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-1" src="Videos/cancion2.html" title="Tan Solo - Los Piojos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-2" src="Videos/cancion1.html" title="GigaChad Theme - Phonk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-3" src="Videos/cancion3.html" title="Enamorado Tuyo - El Cuarteto de Nos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-4" src="Videos/cancion4.html" title="Need 2 - Pinegrove" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="cancion-video-iframe song-video song-video-5" src="Videos/cancion5.html" title="End of Beginning - Djo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <h3 class="cancion-descripcion song-desc song-desc-1">Una canción clásica de Los Piojos que toca el corazón con su melodía única y letra emotiva.</h3>
                     <h3 class="cancion-descripcion song-desc song-desc-2">Me gusta esta canción porque me motiva y me da la energía suficiente para levantarme y vencer lo que sea.</h3>
-                    <h3 class="cancion-descripcion song-desc song-desc-3">Este tema de El Cuarteto de Nos es una joya musical que combina romance y nostalgia de manera perfecta.</h3>
+                    <h3 class="cancion-descripcion song-desc song-desc-3">Este tema de El Cuarteto de Nos es una joya musical que combina una proyeccion de romance y negacion sobre una persona.</h3>
                     <h3 class="cancion-descripcion song-desc song-desc-4">Una canción indie que te atrapa desde el primer momento con su ritmo cautivador y letras introspectivas.</h3>
                     <h3 class="cancion-descripcion song-desc song-desc-5">Djo nos regala una melodía envolvente que es perfecta para esos momentos de reflexión y relajación.</h3>
                 </div>
@@ -68,8 +68,8 @@
     <div id="footer-root"></div>
 
     <script type="module">
-        import { renderMenu } from "../Componentes/menu.js";
-        import { renderFooter } from "../Componentes/footer.js";
+        import { renderMenu } from "./Componentes/menu.js";
+        import { renderFooter } from "./Componentes/footer.js";
 
         renderMenu("menu-root");
         renderFooter("footer-root");
